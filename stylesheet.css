@@ -1,0 +1,223 @@
+:root {
+  /* COMPUTE COLOR - https://mdigi.tools/darken-color/#ff7300 */
+  --color-gold: #d9b310;
+
+  --color-orange: #ff7300;
+  --color-orange-dark: #f26d00; /* 5% darker */
+  --color-orange-darker: #e66800; /* 5% darker */
+
+  --color-gray-light-95: #fdfdfd;
+  --color-gray-light-93: #fcfcfc;
+  --color-gray-light-90: #fbfbfb;
+  --color-gray-light-50: #ececec;
+  --color-gray-light-25: #e2e2e2;
+  --color-gray-light-20: #e1e1e1;
+  --color-gray-light-10: #dddddd;
+  --color-gray: #d9d9d9;
+
+  --color-blue: #0b3c5d;
+
+  --color-black: #2b2928;
+
+  --color-error: #e60000;
+
+  --calendar-width: 360px;
+  --calendar-height: 416px;
+  --month-height: 192px;
+
+  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+  --text-shadow: 1px 1px 0.8px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.calendar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+
+  width: 360px;
+  height: 440px; /* 416px; */
+  background: #ffffff;
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.month {
+  width: 100%;
+  height: 96px;
+  background: var(--color-orange);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.6px; /*  3.2px */
+  text-align: center;
+  color: #ffffff;
+  text-shadow: var(--text-shadow);
+}
+
+.month .material-icons {
+  font-size: 28px;
+  cursor: pointer;
+}
+.month h1 {
+  font-size: 24px; /* 48px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.6px; /* 3.2px */
+  margin-bottom: 16px; /* 16px */
+}
+.month p {
+  font-size: 12.8px; /* 25.6px */
+}
+.weekdays {
+  width: 100%;
+  height: 40px;
+  padding: 0 3.2px;
+
+  display: flex;
+  align-items: center;
+}
+
+.weekdays div {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  height: 100%;
+  /* calender width() - (weekdays horizontal padding( )x2)  */
+  width: calc((360px - (3.2px * 2)) / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-shadow: var(--text-shadow);
+}
+
+.days {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.6px; /* 3.2px */
+}
+
+.day {
+  position: relative;
+  font-size: 14px; /* 22.4px */
+  margin: 2.4px; /* 4.8px */
+  font-weight: 300;
+  /* calender width() - (weekdays horizontal padding()x2)  - (day horizontal margins() x 2 x 7 ) */
+  width: calc((360px - ((3.2px * 2) + (2.4px * 7 * 2))) / 7);
+  /* width: calc(40.2rem / 7); */
+  height: 40px; /* 80px */
+  display: flex;
+  justify-content: center;
+  border: 1px solid transparent;
+  align-items: center;
+  text-shadow: var(--text-shadow);
+
+  transition: color 0.2s, border-color 0.2s;
+}
+.day:not(.day--previous):not(.day--next) {
+  font-weight: 500;
+}
+
+.today {
+  color: #ffffff;
+  font-weight: 600;
+}
+.today::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Material Icons";
+  font-size: 40px;
+  color: var(--color-orange);
+  content: "\e866 ";
+
+  z-index: -1;
+}
+.holiday::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Material Icons";
+  font-size: 40px;
+  color: var(--color-gray);
+  content: "\e866";
+
+  z-index: -1;
+}
+.holiday.today::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Material Icons";
+  font-size: 40px;
+  color: var(--color-orange);
+  content: "\e98b";
+
+  z-index: -1;
+}
+
+.day--previous,
+.day--next {
+  opacity: 0.5;
+  user-select: none;
+}
+
+.day:hover:not(.today):not(.holiday) {
+  background-color: #f5f5f5;
+  border-color: #e8e8e8;
+
+  cursor: pointer;
+}
+
+.calendar__legend {
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.calendar__legend > div {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.calendar__legend > div > span {
+  font-size: 18px;
+}
