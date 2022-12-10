@@ -9,44 +9,61 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="stylesheet.css" />
-    <script defer src="script.js"></script>
+    <script defer src="calendar.js"></script>
     <title>Calendar</title>
   </head>
   <body>
     <div class="calendar">
-      <div class="month">
-        <span class="material-icons month__prev"> arrow_left </span>
-        <div class="date">
-          <h1>May</h1>
-          <p>Fri May 29, 2022</p>
+      <div class="calendar__window">
+        <div class="month">
+          <span class="material-icons month__prev"> arrow_left </span>
+          <div class="date">
+            <h1>May</h1>
+            <p>Fri May 29, 2022</p>
+          </div>
+          <span class="material-icons month__next"> arrow_right </span>
         </div>
-        <span class="material-icons month__next"> arrow_right </span>
-      </div>
 
-      <div class="weekdays">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
-      </div>
-
-      <div class="days"></div>
-
-      <div class="calendar__legend">
-        <div>
-          <span class="material-icons" style="color: #d9d9d9"> bookmark </span>
-          Holiday
+        <div class="weekdays">
+          <div>Sun</div>
+          <div>Mon</div>
+          <div>Tue</div>
+          <div>Wed</div>
+          <div>Thu</div>
+          <div>Fri</div>
+          <div>Sat</div>
         </div>
-        <div>
-          <span class="material-icons" style="color: #ff7300"> bookmark </span>
-          Today
+
+        <div class="days"></div>
+
+        <div class="calendar__legend">
+          <div>
+            <span class="material-icons" style="color: #d9d9d9">
+              bookmark
+            </span>
+            Holiday
+          </div>
+          <div>
+            <span class="material-icons" style="color: #ff7300">
+              bookmark
+            </span>
+            Today
+          </div>
+          <div>
+            <span class="material-icons" style="color: #ff7300">
+              bookmarks
+            </span>
+            Today + Holiday
+          </div>
         </div>
-        <div>
-          <span class="material-icons" style="color: #ff7300"> bookmarks </span>
-          Today + Holiday
+
+        <div class="buttons">
+          <button class="button__cancel" type="button">
+            <span class="button__text">cancel</span>
+          </button>
+          <button class="button__ok" type="button">
+            <span class="button__text">Select </span>
+          </button>
         </div>
       </div>
     </div>
