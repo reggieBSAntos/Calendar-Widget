@@ -1,12 +1,16 @@
 "use strict";
 
 let holidays = null;
-
+/* 
 const url =
   "https://script.google.com/macros/s/AKfycbxfNQF1SZ7uGgN6NHpBigDPaylZtSZfaKbGKSY434A_6ZZ-WARcSSYmS6jFQxmgDIwQ/exec";
-
+ */
 const init = () => {
   let date = new Date();
+  const calendar = document.querySelector(".calendar");
+  const monthContainer = document.querySelector(".date h1");
+  const dateContainer = document.querySelector(".date p");
+  const daysContainer = document.querySelector(".days");
 
   const renderCalendar = () => {
     const months = [
@@ -67,25 +71,27 @@ const init = () => {
 
         const isToday = todayString === newDateString ? " today" : "";
 
-        const isHoliday =
-          holidays.findIndex((r) => {
-            return r.start === newDateString;
-          }) !== -1
-            ? " holiday"
-            : "";
+        const isHoliday = "";
+        //   holidays.findIndex((r) => {
+        //     return r.start === newDateString;
+        //   }) !== -1
+        //     ? " holiday"
+        //     : "";
 
         return `<div class="day${dayType}${isToday}${isHoliday}"   
     data-date="${day}">${newDate.getDate()}</div>`;
       })
       .join("");
 
-    document.querySelector(".date h1").textContent = months[date.getMonth()];
-    document.querySelector(".date p").textContent = date.toDateString();
-    document.querySelector(".days").innerHTML = innerHtml;
+    monthContainer.textContent = months[date.getMonth()];
+
+    dateContainer.textContent = date.toDateString();
+    daysContainer.innerHTML = innerHtml;
+    calendar.classList.add("calendar--open");
     //   console.log(days);
   };
 
-  document.querySelector(".calendar").addEventListener("click", (e) => {
+  calendar.addEventListener("click", (e) => {
     const el = e.target;
     if (el.closest(".month__prev")) {
       date.setMonth(date.getMonth() - 1);
@@ -113,27 +119,25 @@ const init = () => {
         renderCalendar();
       }
     }
+
+    if (el.closest(".button__cancel")) {
+      calendar.classList.remove("calendar--open");
+    }
   });
 
   renderCalendar();
 };
 
-const getHolidays = async () => {
+/* const getHolidays = async () => {
   try {
     const res = await fetch(url);
 
     holidays = await res.json();
 
-    holidays.forEach((holiday) => {
-      const [yr, mo, dy] = holiday.start.split("-");
-      holiday.date = new Date(yr, parseInt(mo) - 1, dy, 0, 0, 0);
-    });
-    // console.log(holidays);
-    holidays.sort((a, b) => a.start - b.start);
+    init();
   } catch (err) {
   } finally {
-    init();
   }
-};
+}; */
 
-document.addEventListener("DOMContentLoaded", getHolidays);
+document.addEventListener("DOMContentLoaded", init);
